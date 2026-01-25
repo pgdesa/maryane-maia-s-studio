@@ -59,61 +59,60 @@ export default function FolderSections() {
           color={folder.color}
           index={index + 1}
         >
-          <div className="flex flex-col items-center text-center min-h-[320px] md:min-h-[380px] justify-center py-8">
+          <div className="flex flex-col items-center text-center min-h-[280px] md:min-h-[320px] justify-center py-6">
             {/* Title */}
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="font-display text-6xl md:text-7xl lg:text-8xl mb-2 drop-shadow-sm"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55 }}
+              className="font-display text-5xl md:text-6xl lg:text-7xl mb-1.5 drop-shadow-sm"
             >
               {folder.title}
             </motion.h2>
 
             {folder.subtitle && (
               <motion.span
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-display text-5xl md:text-6xl mb-10 drop-shadow-sm"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                className="font-display text-4xl md:text-5xl mb-8 drop-shadow-sm"
               >
                 {folder.subtitle}
               </motion.span>
             )}
 
-            {!folder.subtitle && <div className="mb-10" />}
+            {!folder.subtitle && <div className="mb-8" />}
 
             {/* Placeholder */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-elegant text-xl md:text-2xl mb-10 max-w-md"
-              style={{ opacity: 0.85 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, delay: 0.15 }}
+              className="font-elegant text-lg md:text-xl mb-8 max-w-md opacity-90"
             >
               {folder.placeholder}
             </motion.p>
 
             {/* CTA Button */}
             <motion.button
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              whileHover={{ scale: 1.05, y: -3 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, delay: 0.22 }}
+              whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-10 py-4 rounded-sm font-elegant text-xl font-semibold transition-all duration-300"
+              className="px-8 py-3 rounded-sm font-elegant text-lg font-semibold transition-all duration-300"
               style={{
                 backgroundColor: folder.color === "sable" || folder.color === "melon"
-                  ? "hsl(25 35% 22%)"
-                  : "hsl(0 0% 100% / 0.98)",
+                  ? "hsl(25 32% 20%)"
+                  : "hsl(0 0% 99%)",
                 color: folder.color === "sable" || folder.color === "melon"
-                  ? "hsl(35 30% 95%)"
-                  : "hsl(25 30% 18%)",
-                boxShadow: "0 6px 25px -5px hsl(25 30% 15% / 0.3)",
+                  ? "hsl(35 28% 94%)"
+                  : "hsl(25 28% 16%)",
+                boxShadow: "0 5px 20px -4px hsl(25 30% 15% / 0.28)",
               }}
             >
               {folder.ctaText}
@@ -122,11 +121,11 @@ export default function FolderSections() {
             {/* Decorative folder number */}
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.08 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="absolute top-6 right-6 md:top-10 md:right-10 font-display text-[8rem] md:text-[12rem] leading-none select-none pointer-events-none"
-              style={{ transform: "rotate(12deg)" }}
+              whileInView={{ opacity: 0.06 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.9, delay: 0.4 }}
+              className="absolute top-4 right-4 md:top-8 md:right-8 font-display text-[6rem] md:text-[9rem] leading-none select-none pointer-events-none"
+              style={{ transform: "rotate(10deg)" }}
             >
               {String(index + 2).padStart(2, "0")}
             </motion.div>
