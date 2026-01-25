@@ -6,6 +6,7 @@ interface FolderData {
   title: string;
   subtitle?: string;
   color: "sable" | "marine" | "piscine" | "chili" | "melon";
+  tabTitle: string;
   placeholder: string;
   ctaText: string;
 }
@@ -16,6 +17,7 @@ const folders: FolderData[] = [
     title: "Atendimento Publicitário",
     subtitle: "e Mídia",
     color: "marine",
+    tabTitle: "Publicidade",
     placeholder: "Prévia de trabalhos em breve",
     ctaText: "Ver trabalhos",
   },
@@ -23,6 +25,7 @@ const folders: FolderData[] = [
     id: "assessoria",
     title: "Assessoria de Comunicação",
     color: "piscine",
+    tabTitle: "Comunicação",
     placeholder: "Estratégias e entregas em destaque",
     ctaText: "Explorar entregas",
   },
@@ -30,6 +33,7 @@ const folders: FolderData[] = [
     id: "reporter",
     title: "Repórter",
     color: "sable",
+    tabTitle: "Jornalismo",
     placeholder: "Matérias e coberturas jornalísticas",
     ctaText: "Ver reportagens",
   },
@@ -37,6 +41,7 @@ const folders: FolderData[] = [
     id: "ugc",
     title: "UGC Creator",
     color: "chili",
+    tabTitle: "Conteúdo",
     placeholder: "Conteúdos autênticos e criativos",
     ctaText: "Ver conteúdos",
   },
@@ -44,6 +49,7 @@ const folders: FolderData[] = [
     id: "xodo",
     title: "Meu Xodó",
     color: "melon",
+    tabTitle: "Especiais",
     placeholder: "Projetos especiais do coração",
     ctaText: "Ver projetos especiais",
   },
@@ -58,8 +64,9 @@ export default function FolderSections() {
           id={folder.id}
           color={folder.color}
           index={index + 1}
+          title={folder.tabTitle}
         >
-          <div className="flex flex-col items-center text-center min-h-[280px] md:min-h-[320px] justify-center py-6">
+          <div className="flex flex-col items-center text-center min-h-[260px] md:min-h-[300px] justify-center py-6">
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
@@ -96,7 +103,7 @@ export default function FolderSections() {
               {folder.placeholder}
             </motion.p>
 
-            {/* CTA Button */}
+            {/* CTA Button with enhanced styling */}
             <motion.button
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -104,28 +111,32 @@ export default function FolderSections() {
               transition={{ duration: 0.55, delay: 0.22 }}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-8 py-3 rounded-sm font-elegant text-lg font-semibold transition-all duration-300"
+              className="px-8 py-3 rounded-sm font-elegant text-lg font-semibold transition-all duration-300 relative overflow-hidden"
               style={{
                 backgroundColor: folder.color === "sable" || folder.color === "melon"
-                  ? "hsl(25 32% 20%)"
-                  : "hsl(0 0% 99%)",
+                  ? "hsl(25 32% 18%)"
+                  : "hsl(0 0% 98%)",
                 color: folder.color === "sable" || folder.color === "melon"
                   ? "hsl(35 28% 94%)"
                   : "hsl(25 28% 16%)",
-                boxShadow: "0 5px 20px -4px hsl(25 30% 15% / 0.28)",
+                boxShadow: `
+                  0 6px 20px -4px hsl(25 30% 15% / 0.3),
+                  0 2px 6px -2px hsl(25 30% 15% / 0.15),
+                  inset 0 1px 0 hsl(0 0% 100% / 0.1)
+                `,
               }}
             >
               {folder.ctaText}
             </motion.button>
 
-            {/* Decorative folder number */}
+            {/* Decorative folder number - subtle watermark */}
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.06 }}
+              whileInView={{ opacity: 0.04 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.9, delay: 0.4 }}
-              className="absolute top-4 right-4 md:top-8 md:right-8 font-display text-[6rem] md:text-[9rem] leading-none select-none pointer-events-none"
-              style={{ transform: "rotate(10deg)" }}
+              className="absolute top-4 right-4 md:top-8 md:right-8 font-display text-[5rem] md:text-[7rem] leading-none select-none pointer-events-none"
+              style={{ transform: "rotate(8deg)" }}
             >
               {String(index + 2).padStart(2, "0")}
             </motion.div>
