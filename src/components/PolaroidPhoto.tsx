@@ -9,53 +9,78 @@ interface PolaroidPhotoProps {
 export default function PolaroidPhoto({ className = "" }: PolaroidPhotoProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, rotate: 8, y: 20 }}
-      animate={{ opacity: 1, rotate: 3, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+      initial={{ opacity: 0, rotate: 6, y: 15 }}
+      animate={{ opacity: 1, rotate: -2, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
       className={`relative ${className}`}
     >
-      {/* Paper clip positioned on top corner */}
+      {/* Paper clip positioned on top corner - metallic look */}
       <motion.img
         src={paperClip}
         alt=""
-        className="absolute -top-8 -right-2 w-14 h-14 z-20"
-        style={{ transform: "rotate(-15deg)" }}
-        initial={{ opacity: 0, y: -20 }}
+        className="absolute -top-6 -right-1 w-10 h-10 md:w-12 md:h-12 z-20"
+        style={{ 
+          transform: "rotate(-12deg)",
+          filter: "drop-shadow(1px 2px 3px hsl(25 30% 15% / 0.25))"
+        }}
+        initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
+        transition={{ delay: 0.7, duration: 0.4 }}
       />
 
-      {/* Polaroid frame */}
+      {/* Polaroid frame with realistic shadow */}
       <div
-        className="relative bg-white p-2 pb-8 md:p-3 md:pb-12"
+        className="relative bg-white p-1.5 pb-6 md:p-2 md:pb-8"
         style={{
-          boxShadow: "0 8px 30px -5px hsl(25 30% 15% / 0.3), 0 2px 10px -2px hsl(25 30% 15% / 0.2)",
+          boxShadow: `
+            0 8px 24px -4px hsl(25 30% 15% / 0.3),
+            0 3px 8px -2px hsl(25 30% 15% / 0.15),
+            0 1px 3px 0 hsl(25 30% 15% / 0.1)
+          `,
+          transform: "rotate(-2deg)",
         }}
       >
-        {/* Photo */}
+        {/* Photo container */}
         <div className="relative overflow-hidden">
           <img
             src={maryanePhoto}
             alt="Maryane Maia"
-            className="w-32 h-40 md:w-44 md:h-56 object-cover object-top"
+            className="w-28 h-32 md:w-36 md:h-44 object-cover object-top"
             style={{
-              filter: "saturate(1.05) contrast(1.02)",
+              filter: "saturate(1.05) contrast(1.03) brightness(1.02)",
             }}
           />
-          {/* Subtle vintage overlay */}
+          
+          {/* Subtle vintage overlay on photo */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "linear-gradient(135deg, hsl(40 50% 90% / 0.1) 0%, transparent 50%)",
+              background: "linear-gradient(135deg, hsl(40 45% 92% / 0.12) 0%, transparent 60%)",
+            }}
+          />
+          
+          {/* Very subtle vignette on photo */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              boxShadow: "inset 0 0 20px 2px hsl(25 30% 15% / 0.08)",
             }}
           />
         </div>
 
-        {/* Paper texture on polaroid */}
+        {/* Subtle paper texture on polaroid white border */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        
+        {/* Polaroid border slight aging effect */}
+        <div
+          className="absolute inset-0 pointer-events-none rounded-sm"
+          style={{
+            background: "linear-gradient(180deg, transparent 85%, hsl(40 30% 85% / 0.3) 100%)",
           }}
         />
       </div>
