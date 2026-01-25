@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import maryanePhoto from "@/assets/maryane-portrait.jpg";
-import paperClip from "@/assets/paper-clip.png";
 
 interface PolaroidPhotoProps {
   className?: string;
@@ -14,50 +13,75 @@ export default function PolaroidPhoto({ className = "" }: PolaroidPhotoProps) {
       transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
       className={`relative ${className}`}
     >
-      {/* Realistic metallic paper clip - positioned to "grip" the polaroid */}
+      {/* Realistic large metallic paper clip - SVG based for true realism */}
       <motion.div
-        className="absolute -top-5 right-2 md:-top-6 md:right-3 w-8 h-12 md:w-10 md:h-14 z-30"
+        className="absolute -top-8 right-0 md:-top-10 md:right-1 w-14 h-20 md:w-18 md:h-24 z-30"
         style={{
-          transform: "rotate(15deg)",
+          transform: "rotate(12deg)",
         }}
-        initial={{ opacity: 0, y: -20, rotate: -20 }}
-        animate={{ opacity: 1, y: 0, rotate: 15 }}
+        initial={{ opacity: 0, y: -20, rotate: -15 }}
+        animate={{ opacity: 1, y: 0, rotate: 12 }}
         transition={{ delay: 0.65, duration: 0.5, ease: "easeOut" }}
       >
-        {/* Clip shadow on polaroid surface */}
-        <div
-          className="absolute inset-0"
+        {/* Shadow of the clip projected onto the polaroid */}
+        <svg
+          viewBox="0 0 40 80"
+          className="absolute inset-0 w-full h-full"
           style={{
-            background: "transparent",
-            filter: "blur(4px)",
-            transform: "translate(3px, 4px)",
+            filter: "blur(3px)",
+            transform: "translate(4px, 5px)",
+            opacity: 0.25,
           }}
         >
-          <img
-            src={paperClip}
-            alt=""
-            className="w-full h-full object-contain opacity-30"
+          <path
+            d="M20 5 C8 5 4 12 4 22 L4 58 C4 68 10 75 20 75 C30 75 36 68 36 58 L36 28 C36 20 32 16 26 16 C20 16 16 20 16 26 L16 52 C16 56 18 58 20 58 C22 58 24 56 24 52 L24 26"
+            fill="none"
+            stroke="hsl(25 20% 15%)"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
-        </div>
-        
-        {/* Main clip with metallic enhancement */}
-        <img
-          src={paperClip}
-          alt=""
-          className="w-full h-full object-contain relative z-10"
-          style={{
-            filter: "drop-shadow(0 1px 2px hsl(25 30% 15% / 0.2)) contrast(1.05) brightness(1.02)",
-          }}
-        />
-        
-        {/* Subtle highlight reflection overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none z-20"
-          style={{
-            background: "linear-gradient(135deg, hsl(0 0% 100% / 0.15) 0%, transparent 40%, transparent 60%, hsl(0 0% 100% / 0.08) 100%)",
-            mixBlendMode: "overlay",
-          }}
-        />
+        </svg>
+
+        {/* Main metallic clip */}
+        <svg
+          viewBox="0 0 40 80"
+          className="relative w-full h-full z-10"
+        >
+          {/* Outer clip wire with metallic gradient */}
+          <defs>
+            <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(220 8% 75%)" />
+              <stop offset="25%" stopColor="hsl(220 10% 88%)" />
+              <stop offset="50%" stopColor="hsl(220 6% 70%)" />
+              <stop offset="75%" stopColor="hsl(220 10% 85%)" />
+              <stop offset="100%" stopColor="hsl(220 8% 72%)" />
+            </linearGradient>
+            <linearGradient id="metalHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="hsl(0 0% 100% / 0.6)" />
+              <stop offset="50%" stopColor="hsl(0 0% 100% / 0)" />
+              <stop offset="100%" stopColor="hsl(220 5% 40% / 0.3)" />
+            </linearGradient>
+          </defs>
+          
+          {/* Main wire path */}
+          <path
+            d="M20 5 C8 5 4 12 4 22 L4 58 C4 68 10 75 20 75 C30 75 36 68 36 58 L36 28 C36 20 32 16 26 16 C20 16 16 20 16 26 L16 52 C16 56 18 58 20 58 C22 58 24 56 24 52 L24 26"
+            fill="none"
+            stroke="url(#metalGradient)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          
+          {/* Highlight stroke for 3D effect */}
+          <path
+            d="M20 5 C8 5 4 12 4 22 L4 58 C4 68 10 75 20 75 C30 75 36 68 36 58 L36 28 C36 20 32 16 26 16 C20 16 16 20 16 26 L16 52 C16 56 18 58 20 58 C22 58 24 56 24 52 L24 26"
+            fill="none"
+            stroke="url(#metalHighlight)"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            style={{ transform: "translate(-0.3px, -0.3px)" }}
+          />
+        </svg>
       </motion.div>
 
       {/* Polaroid frame with ultra-realistic shadow and texture */}

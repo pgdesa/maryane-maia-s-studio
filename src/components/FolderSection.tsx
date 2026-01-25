@@ -18,8 +18,8 @@ const folders: FolderData[] = [
     subtitle: "e Mídia",
     color: "marine",
     tabTitle: "Publicidade",
-    placeholder: "Prévia de trabalhos em breve",
-    ctaText: "Ver trabalhos",
+    placeholder: "",
+    ctaText: "Veja trabalhos",
   },
   {
     id: "assessoria",
@@ -27,7 +27,7 @@ const folders: FolderData[] = [
     color: "piscine",
     tabTitle: "Comunicação",
     placeholder: "Estratégias e entregas em destaque",
-    ctaText: "Explorar entregas",
+    ctaText: "Explorar",
   },
   {
     id: "reporter",
@@ -51,7 +51,7 @@ const folders: FolderData[] = [
     color: "melon",
     tabTitle: "Especiais",
     placeholder: "Projetos especiais do coração",
-    ctaText: "Ver projetos especiais",
+    ctaText: "Ver agora",
   },
 ];
 
@@ -92,16 +92,18 @@ export default function FolderSections() {
 
             {!folder.subtitle && <div className="mb-8" />}
 
-            {/* Placeholder */}
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="font-elegant text-lg md:text-xl mb-8 max-w-md opacity-90"
-            >
-              {folder.placeholder}
-            </motion.p>
+            {/* Placeholder - only show if not empty */}
+            {folder.placeholder && (
+              <motion.p
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: 0.15 }}
+                className="font-elegant text-lg md:text-xl mb-8 max-w-md opacity-90"
+              >
+                {folder.placeholder}
+              </motion.p>
+            )}
 
             {/* CTA Button with enhanced styling */}
             <motion.button

@@ -46,11 +46,11 @@ export default function Navbar() {
             onClick={scrollToTop}
             className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer"
             style={{ 
-              color: "hsl(45 70% 48%)",
+              color: "hsl(12 55% 45%)",
               textShadow: "1px 1px 2px hsl(25 30% 15% / 0.15)"
             }}
           >
-            Mary Maia
+            Maryane Maia
           </button>
 
           {/* Desktop Navigation */}
@@ -66,20 +66,9 @@ export default function Navbar() {
                 <span 
                   className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                   style={{ backgroundColor: "hsl(25 30% 30%)" }}
-                />
-              </a>
-            ))}
-            
-            {/* Signature - Maryane Maia with Chili color */}
-            <span 
-              className="font-elegant text-sm lg:text-base font-semibold tracking-wide ml-4 lg:ml-6 pl-4 lg:pl-6"
-              style={{ 
-                color: "hsl(12 55% 45%)",
-                borderLeft: "1px solid hsl(30 25% 75% / 0.6)"
-              }}
-            >
-              Maryane Maia
-            </span>
+              />
+            </a>
+          ))}
           </div>
 
           {/* Mobile Menu Button */}
