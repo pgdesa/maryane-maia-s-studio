@@ -177,25 +177,6 @@ export default function HeroFolder() {
             <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
               {/* Text content */}
               <div className="flex-1 text-center md:text-left pt-8 md:pt-14">
-                {/* Decorative butterflies */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 0.35, scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                  className="absolute top-12 left-6 md:left-10 text-xl md:text-2xl"
-                  style={{ filter: "grayscale(0.4) sepia(0.2)" }}
-                >
-                  🦋
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 0.25, scale: 1 }}
-                  transition={{ delay: 0.9, duration: 0.5 }}
-                  className="absolute top-20 left-14 md:left-24 text-base md:text-lg"
-                  style={{ filter: "grayscale(0.4) sepia(0.2)" }}
-                >
-                  🦋
-                </motion.div>
 
                 <motion.h1
                   initial={{ opacity: 0, y: 15 }}
