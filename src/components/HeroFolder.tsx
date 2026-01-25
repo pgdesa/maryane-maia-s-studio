@@ -174,38 +174,26 @@ export default function HeroFolder() {
 
           {/* Content */}
           <div className="relative z-10 p-6 md:p-10 lg:p-12 min-h-[380px] md:min-h-[420px]">
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
-              {/* Text content */}
-              <div className="flex-1 text-center md:text-left pt-8 md:pt-14">
+            {/* Polaroid photo - positioned top right */}
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8 z-20">
+              <PolaroidPhoto />
+            </div>
 
-                <motion.h1
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="font-display text-5xl md:text-6xl lg:text-7xl mb-2"
-                  style={{ 
-                    color: "hsl(25 30% 16%)",
-                    textShadow: "1px 2px 4px hsl(25 30% 15% / 0.1)"
-                  }}
-                >
-                  Portfólio
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.45, duration: 0.6 }}
-                  className="font-elegant text-lg md:text-xl lg:text-2xl font-semibold tracking-[0.22em] uppercase"
-                  style={{ color: "hsl(25 25% 20%)" }}
-                >
-                  Maryane Maia
-                </motion.p>
-              </div>
-
-              {/* Polaroid photo - positioned top right */}
-              <div className="md:absolute md:top-4 md:right-4 lg:top-5 lg:right-5">
-                <PolaroidPhoto />
-              </div>
+            {/* Centered title */}
+            <div className="flex flex-col items-center justify-center h-full min-h-[320px] md:min-h-[360px]">
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-tight"
+                style={{ 
+                  color: "hsl(25 30% 16%)",
+                  textShadow: "1px 2px 4px hsl(25 30% 15% / 0.1)"
+                }}
+              >
+                <span className="block">Portfólio</span>
+                <span className="block mt-1 md:mt-2">Maryane Maia</span>
+              </motion.h1>
             </div>
           </div>
 
