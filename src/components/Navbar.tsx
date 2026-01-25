@@ -69,6 +69,17 @@ export default function Navbar() {
                 />
               </a>
             ))}
+            
+            {/* Signature - Maryane Maia with Chili color */}
+            <span 
+              className="font-elegant text-sm lg:text-base font-semibold tracking-wide ml-4 lg:ml-6 pl-4 lg:pl-6"
+              style={{ 
+                color: "hsl(12 55% 45%)",
+                borderLeft: "1px solid hsl(30 25% 75% / 0.6)"
+              }}
+            >
+              Maryane Maia
+            </span>
           </div>
 
           {/* Mobile Menu Button */}
