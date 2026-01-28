@@ -20,7 +20,7 @@ export default function HeroFolder() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 relative"
+      className="min-h-screen flex items-center justify-center pt-28 md:pt-32 pb-12 px-4 relative"
       style={{ perspective: "1600px" }}
     >
       <motion.div
@@ -55,7 +55,7 @@ export default function HeroFolder() {
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="absolute -top-5 md:-top-6 left-6 md:left-10 h-5 md:h-6 px-6 md:px-10 rounded-t-md z-10"
+          className="absolute -top-3 md:-top-4 left-6 md:left-10 h-5 md:h-6 px-6 md:px-10 rounded-t-md z-10"
           style={{
             backgroundColor: "hsl(35 38% 74%)",
             backgroundImage: "linear-gradient(180deg, hsl(35 45% 82%) 0%, hsl(35 38% 74%) 40%, hsl(35 35% 70%) 100%)",
@@ -81,9 +81,9 @@ export default function HeroFolder() {
           
           {/* Tab label */}
           <span
-            className="relative z-10 flex items-center justify-center h-full font-elegant text-[10px] md:text-xs font-medium tracking-wide uppercase whitespace-nowrap"
+            className="relative z-10 flex items-center justify-center h-full font-elegant text-[10px] md:text-xs font-semibold tracking-wide uppercase whitespace-nowrap"
             style={{ 
-              color: "hsl(25 30% 25% / 0.7)",
+              color: "hsl(var(--ink-soft) / 0.75)",
               textShadow: "0 1px 0 hsl(0 0% 100% / 0.4)",
             }}
           >
@@ -96,18 +96,11 @@ export default function HeroFolder() {
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative rounded-sm overflow-hidden"
+          className="relative rounded-sm overflow-hidden folder-surface"
           style={{
             backgroundImage: `url(${folderTexture})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            boxShadow: `
-              0 28px 65px -18px hsl(25 30% 15% / 0.4),
-              0 14px 30px -12px hsl(25 30% 15% / 0.24),
-              0 6px 14px -6px hsl(25 30% 15% / 0.16),
-              0 2px 5px -2px hsl(25 30% 15% / 0.1),
-              inset 0 1px 0 hsl(0 0% 100% / 0.15)
-            `,
             border: "1px solid hsl(35 32% 68%)",
           }}
         >
@@ -117,6 +110,14 @@ export default function HeroFolder() {
             style={{
               backgroundColor: "hsl(35 42% 80% / 0.85)",
               backgroundBlendMode: "multiply",
+            }}
+          />
+
+          {/* Morning light overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at 15% 8%, hsl(45 70% 97% / 0.35) 0%, transparent 50%)",
             }}
           />
 
@@ -142,15 +143,6 @@ export default function HeroFolder() {
               backgroundSize: "14px 14px",
               borderRight: "1px solid hsl(350 30% 75% / 0.2)",
               borderBottom: "1px solid hsl(350 30% 75% / 0.2)",
-            }}
-          />
-
-          {/* Subtle grain noise for paper feel */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.05]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              mixBlendMode: "multiply",
             }}
           />
 
@@ -185,9 +177,8 @@ export default function HeroFolder() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-tight"
+                className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-tight text-ink"
                 style={{ 
-                  color: "hsl(25 30% 16%)",
                   textShadow: "1px 2px 4px hsl(25 30% 15% / 0.1)"
                 }}
               >
@@ -244,8 +235,7 @@ export default function HeroFolder() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
       >
         <span 
-          className="font-elegant text-sm tracking-wide"
-          style={{ color: "hsl(25 20% 40%)" }}
+          className="font-elegant text-sm tracking-wide text-ink-soft opacity-70"
         >
           Role para explorar as pastas
         </span>
@@ -253,7 +243,7 @@ export default function HeroFolder() {
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
         >
-          <ChevronDown className="w-5 h-5" style={{ color: "hsl(25 20% 45%)" }} />
+          <ChevronDown className="w-5 h-5 text-ink-soft opacity-60" />
         </motion.div>
       </motion.div>
     </section>

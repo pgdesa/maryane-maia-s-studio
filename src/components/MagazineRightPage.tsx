@@ -1,45 +1,36 @@
 import { motion } from "framer-motion";
-import { Camera, Star, Heart } from "lucide-react";
+import { Camera } from "lucide-react";
 
-// Photo placeholder component
-const PhotoPlaceholder = ({ 
-  className, 
-  size = "medium",
-  label = "FOTO",
-  rotate = 0,
-  delay = 0
+// Mosaic Tile component for responsive grid
+const MosaicTile = ({ 
+  label, 
+  delay = 0, 
+  rotate = 0, 
+  className = "" 
 }: { 
-  className?: string;
-  size?: "small" | "medium" | "large";
-  label?: string;
-  rotate?: number;
+  label: string;
   delay?: number;
+  rotate?: number;
+  className?: string;
 }) => {
-  const sizeClasses = {
-    small: "w-24 h-24 md:w-28 md:h-28",
-    medium: "w-32 h-40 md:w-36 md:h-44",
-    large: "w-44 h-56 md:w-52 md:h-64",
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.5 }}
-      className={`relative ${sizeClasses[size]} ${className}`}
+      className={`relative w-full h-full ${className}`}
       style={{
         transform: `rotate(${rotate}deg)`,
-        transformOrigin: "center center",
       }}
     >
-      {/* Photo frame with subtle border */}
+      {/* Photo frame */}
       <div 
         className="absolute inset-0 rounded-sm overflow-hidden"
         style={{
           background: "linear-gradient(135deg, hsl(30 20% 88%) 0%, hsl(30 20% 82%) 100%)",
           boxShadow: `
-            0 4px 12px -2px hsl(25 30% 15% / 0.15),
-            0 2px 4px -1px hsl(25 30% 15% / 0.1),
+            0 3px 10px -2px hsl(25 30% 15% / 0.15),
+            0 1px 3px -1px hsl(25 30% 15% / 0.1),
             inset 0 0 0 1px hsl(35 30% 90% / 0.5)
           `,
         }}
@@ -53,13 +44,12 @@ const PhotoPlaceholder = ({
         >
           <div className="text-center opacity-50">
             <Camera 
-              className="mx-auto mb-1" 
-              size={size === "large" ? 28 : size === "medium" ? 22 : 16}
-              style={{ color: "hsl(25 25% 45%)" }}
+              className="mx-auto mb-0.5" 
+              size={16}
+              style={{ color: "hsl(var(--ink-soft))" }}
             />
             <span 
-              className="font-elegant text-[10px] md:text-xs tracking-wide"
-              style={{ color: "hsl(25 25% 45%)" }}
+              className="font-elegant text-[9px] tracking-wide text-ink-soft"
             >
               {label}
             </span>
@@ -80,29 +70,29 @@ const PhotoPlaceholder = ({
 
 export default function MagazineRightPage() {
   return (
-    <div className="p-6 md:p-8 lg:p-10 min-h-[500px] lg:min-h-[600px] relative">
-      {/* Header quote */}
+    <div className="p-4 md:p-6 lg:p-8 h-full flex flex-col">
+      {/* Header quote - more compact */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="mb-6 lg:mb-8"
+        className="mb-4"
       >
         <blockquote className="relative">
           <span 
-            className="font-display text-5xl md:text-6xl leading-none opacity-40"
+            className="font-display text-4xl md:text-5xl leading-none opacity-40"
             style={{ color: "hsl(var(--folder-chili))" }}
           >
             "
           </span>
           <p 
-            className="font-elegant text-xl md:text-2xl lg:text-3xl italic leading-tight -mt-4 ml-4"
+            className="font-elegant text-lg md:text-xl lg:text-2xl italic leading-tight -mt-3 ml-3"
             style={{ color: "hsl(var(--folder-marine))" }}
           >
-            Sempre em busca de novos desafios para crescer e aprender.
+            Sempre em busca de novos desafios.
           </p>
           <span 
-            className="font-display text-3xl leading-none opacity-40 ml-4"
+            className="font-display text-2xl leading-none opacity-40 ml-3"
             style={{ color: "hsl(var(--folder-chili))" }}
           >
             "
@@ -110,82 +100,76 @@ export default function MagazineRightPage() {
         </blockquote>
       </motion.div>
 
-      {/* Photo Mosaic Grid */}
-      <div className="relative">
-        {/* Main large photo */}
-        <PhotoPlaceholder 
-          size="large" 
-          label="PRINCIPAL"
-          rotate={-2}
-          delay={0.4}
-          className="absolute top-0 left-0 z-20"
-        />
+      {/* Photo Mosaic Grid - responsive and compact */}
+      <div className="flex-1 grid grid-cols-3 grid-rows-3 gap-2 md:gap-3">
+        {/* Main large photo - spans 2x2 */}
+        <div className="col-span-2 row-span-2 relative">
+          <MosaicTile 
+            label="PRINCIPAL"
+            delay={0.4}
+            rotate={-1}
+          />
+          
+          {/* Overlay small photo on top of main */}
+          <div className="absolute bottom-2 right-2 w-12 h-14 md:w-14 md:h-16 z-10">
+            <MosaicTile 
+              label="5"
+              delay={0.8}
+              rotate={4}
+            />
+          </div>
+        </div>
 
-        {/* Medium photos */}
-        <PhotoPlaceholder 
-          size="medium" 
-          label="FOTO 2"
-          rotate={3}
-          delay={0.5}
-          className="absolute top-4 right-4 z-10"
-        />
+        {/* Side photo 1 */}
+        <div className="col-span-1 row-span-1">
+          <MosaicTile 
+            label="FOTO 2"
+            delay={0.5}
+            rotate={2}
+          />
+        </div>
 
-        <PhotoPlaceholder 
-          size="medium" 
-          label="FOTO 3"
-          rotate={-1}
-          delay={0.6}
-          className="absolute top-32 md:top-36 left-28 md:left-36 z-30"
-        />
+        {/* Side photo 2 */}
+        <div className="col-span-1 row-span-1">
+          <MosaicTile 
+            label="FOTO 3"
+            delay={0.6}
+            rotate={-2}
+          />
+        </div>
 
-        {/* Small photos */}
-        <PhotoPlaceholder 
-          size="small" 
-          label="FOTO 4"
-          rotate={4}
-          delay={0.7}
-          className="absolute bottom-20 right-8 z-20"
-        />
+        {/* Bottom photos */}
+        <div className="col-span-1 row-span-1">
+          <MosaicTile 
+            label="FOTO 4"
+            delay={0.7}
+            rotate={1}
+          />
+        </div>
 
-        <PhotoPlaceholder 
-          size="small" 
-          label="FOTO 5"
-          rotate={-3}
-          delay={0.8}
-          className="absolute bottom-4 left-8 z-10"
-        />
+        <div className="col-span-1 row-span-1">
+          <MosaicTile 
+            label="FOTO 6"
+            delay={0.9}
+            rotate={-1}
+          />
+        </div>
 
-        <PhotoPlaceholder 
-          size="small" 
-          label="FOTO 6"
-          rotate={2}
-          delay={0.9}
-          className="absolute bottom-0 right-24 z-15"
-        />
-
-        {/* Spacer for layout */}
-        <div className="h-[380px] md:h-[420px] lg:h-[460px]" />
+        <div className="col-span-1 row-span-1">
+          <MosaicTile 
+            label="EXTRA"
+            delay={1.0}
+            rotate={2}
+          />
+        </div>
       </div>
 
-      {/* Decorative Editorial Elements */}
-      <div className="absolute top-6 right-6 opacity-30">
-        <Star size={14} style={{ color: "hsl(var(--folder-melon))" }} fill="currentColor" />
-      </div>
-      
-      <div className="absolute top-20 right-20 opacity-25">
-        <Heart size={12} style={{ color: "hsl(var(--folder-chili))" }} fill="currentColor" />
-      </div>
-
-      <div className="absolute bottom-16 left-4 opacity-25">
-        <Star size={10} style={{ color: "hsl(var(--folder-piscine))" }} fill="currentColor" />
-      </div>
-
-      {/* Decorative tape/sticker element */}
+      {/* Decorative tape/sticker elements - smaller */}
       <motion.div
         initial={{ opacity: 0, rotate: -10 }}
         animate={{ opacity: 1, rotate: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute top-12 right-2 w-8 h-3 opacity-60"
+        className="absolute top-10 right-2 w-6 h-2 opacity-50"
         style={{
           background: "linear-gradient(90deg, hsl(var(--folder-melon) / 0.6) 0%, hsl(var(--folder-melon) / 0.4) 100%)",
           transform: "rotate(-15deg)",
@@ -196,7 +180,7 @@ export default function MagazineRightPage() {
         initial={{ opacity: 0, rotate: 10 }}
         animate={{ opacity: 1, rotate: 0 }}
         transition={{ delay: 1.1, duration: 0.5 }}
-        className="absolute bottom-28 right-16 w-6 h-2 opacity-50"
+        className="absolute bottom-20 right-12 w-5 h-1.5 opacity-40"
         style={{
           background: "linear-gradient(90deg, hsl(var(--folder-piscine) / 0.5) 0%, hsl(var(--folder-piscine) / 0.3) 100%)",
           transform: "rotate(8deg)",

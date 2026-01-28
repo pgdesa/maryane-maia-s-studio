@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import paperTexture from "@/assets/paper-texture-sable.jpg";
 
 const navLinks = [
   { label: "Quem sou eu", href: "/quem-sou-eu" },
-  { label: "Meus Trabalhos", href: "#trabalhos" },
-  { label: "Artigos", href: "#artigos" },
-  { label: "Fale Comigo", href: "#contato" },
+  { label: "Meus Trabalhos", href: "/meus-trabalhos" },
+  { label: "Artigos", href: "/artigos" },
+  { label: "Fale Comigo", href: "/fale-comigo" },
 ];
 
 export default function Navbar() {
@@ -16,27 +15,17 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Fechar menu mobile ao trocar rota
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname, location.hash]);
+
   const scrollToTop = () => {
     if (location.pathname !== "/") {
       navigate("/");
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
-
-  const handleLinkClick = (href: string) => {
-    if (href.startsWith("#")) {
-      // Hash link - scroll to section on home page
-      if (location.pathname !== "/") {
-        navigate("/" + href);
-      } else {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    }
-    // Route links handled by Link component
   };
 
   return (
@@ -51,24 +40,13 @@ export default function Navbar() {
         borderBottom: "1px solid hsl(30 25% 82% / 0.5)"
       }}
     >
-      {/* Subtle paper texture overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage: `url(${paperTexture})`,
-          backgroundSize: "cover",
-          mixBlendMode: "multiply",
-        }}
-      />
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4 relative z-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={scrollToTop}
-            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer"
+            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer text-brand"
             style={{ 
-              color: "hsl(12 55% 45%)",
               textShadow: "1px 1px 2px hsl(25 30% 15% / 0.15)"
             }}
           >
@@ -77,46 +55,25 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => 
-              link.href.startsWith("/") ? (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
-                  style={{ color: "hsl(25 25% 22%)" }}
-                >
-                  {link.label}
-                  <span 
-                    className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                    style={{ backgroundColor: "hsl(25 30% 30%)" }}
-                  />
-                </Link>
-              ) : (
-                <a 
-                  key={link.href} 
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                  className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
-                  style={{ color: "hsl(25 25% 22%)" }}
-                >
-                  {link.label}
-                  <span 
-                    className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                    style={{ backgroundColor: "hsl(25 30% 30%)" }}
-                  />
-                </a>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group text-ink-soft"
+              >
+                {link.label}
+                <span 
+                  className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                  style={{ backgroundColor: "hsl(var(--ink))" }}
+                />
+              </Link>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md transition-colors"
-            style={{ color: "hsl(25 25% 25%)" }}
+            className="md:hidden p-2 rounded-md transition-colors text-ink-soft"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -134,42 +91,21 @@ export default function Navbar() {
               className="md:hidden overflow-hidden"
             >
               <div className="py-3 flex flex-col gap-3">
-                {navLinks.map((link, index) =>
-                  link.href.startsWith("/") ? (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.08 }}
-                    >
-                      <Link
-                        to={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="font-elegant text-lg font-medium py-1.5 block"
-                        style={{ color: "hsl(25 25% 22%)" }}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ) : (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      initial={{ opacity: 0, x: -15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.08 }}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleLinkClick(link.href);
-                        setIsOpen(false);
-                      }}
-                      className="font-elegant text-lg font-medium py-1.5"
-                      style={{ color: "hsl(25 25% 22%)" }}
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -15 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.08 }}
+                  >
+                    <Link
+                      to={link.href}
+                      className="font-elegant text-lg font-medium py-1.5 block text-ink-soft"
                     >
                       {link.label}
-                    </motion.a>
-                  )
-                )}
+                    </Link>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           )}

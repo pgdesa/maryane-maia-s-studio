@@ -2,23 +2,23 @@ import { motion } from "framer-motion";
 
 export default function MagazineLeftPage() {
   return (
-    <div className="p-6 md:p-8 lg:p-10 min-h-[500px] lg:min-h-[600px] flex flex-col">
+    <div className="p-4 md:p-6 lg:p-8 h-full flex flex-col">
       {/* Editorial Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="mb-6"
+        className="mb-4"
       >
         {/* Decorative line */}
         <div 
-          className="w-12 h-1 mb-4 rounded-full"
+          className="w-10 h-0.5 mb-3 rounded-full"
           style={{ backgroundColor: "hsl(var(--folder-chili))" }}
         />
         
         {/* Main Title */}
         <h1 
-          className="font-display text-5xl md:text-6xl lg:text-7xl leading-none mb-3"
+          className="font-display text-4xl md:text-5xl lg:text-6xl leading-none mb-2"
           style={{ color: "hsl(var(--folder-chili))" }}
         >
           Quem sou eu?
@@ -26,8 +26,7 @@ export default function MagazineLeftPage() {
         
         {/* Subtitle */}
         <p 
-          className="font-elegant text-sm md:text-base lg:text-lg tracking-wide uppercase"
-          style={{ color: "hsl(var(--folder-marine))" }}
+          className="font-elegant text-xs md:text-sm tracking-wide uppercase text-ink-soft"
         >
           Maryane Maia — Comunicadora, Publicitária e Relações Públicas
         </p>
@@ -41,9 +40,9 @@ export default function MagazineLeftPage() {
         className="flex-1"
       >
         {/* First paragraph with Drop Cap */}
-        <div className="font-body text-sm md:text-base leading-relaxed mb-6" style={{ color: "hsl(25 30% 20%)" }}>
+        <div className="font-body text-[13px] md:text-sm leading-relaxed mb-4 text-ink">
           <span 
-            className="float-left font-display text-5xl md:text-6xl leading-none mr-2 mt-1"
+            className="float-left font-display text-4xl md:text-5xl leading-none mr-2 mt-0.5"
             style={{ color: "hsl(var(--folder-chili))" }}
           >
             M
@@ -53,17 +52,17 @@ export default function MagazineLeftPage() {
           </span>
         </div>
 
-        <p className="font-body text-sm md:text-base leading-relaxed mb-6" style={{ color: "hsl(25 30% 20%)" }}>
+        <p className="font-body text-[13px] md:text-sm leading-relaxed mb-4 text-ink">
           Minha vontade de aprender e me desafiar me leva a viver histórias cada dia mais interessantes. Amo trabalhar e viver, e quero sempre estar pronta para o próximo desafio.
         </p>
 
         {/* Divider line */}
         <div 
-          className="w-16 h-px my-6"
+          className="w-12 h-px my-4"
           style={{ backgroundColor: "hsl(var(--folder-piscine) / 0.5)" }}
         />
 
-        <p className="font-body text-sm md:text-base leading-relaxed" style={{ color: "hsl(25 30% 20%)" }}>
+        <p className="font-body text-[13px] md:text-sm leading-relaxed text-ink">
           Acredito veementemente que por meio da comunicação podemos mudar o mundo, e quero por meio desse site fazer entender o porquê.
         </p>
       </motion.div>
@@ -73,29 +72,29 @@ export default function MagazineLeftPage() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="mt-8 pl-4 relative"
+        className="mt-4 p-3 md:p-4 relative"
         style={{
           borderLeft: "3px solid hsl(var(--folder-chili))",
         }}
       >
         {/* Opening quote mark */}
         <span 
-          className="absolute -top-4 -left-2 font-display text-6xl leading-none opacity-30"
+          className="absolute -top-2 -left-1 font-display text-4xl md:text-5xl leading-none opacity-30"
           style={{ color: "hsl(var(--folder-chili))" }}
         >
           "
         </span>
         
         <p 
-          className="font-elegant text-lg md:text-xl lg:text-2xl italic leading-snug"
+          className="font-elegant text-base md:text-lg lg:text-xl italic leading-snug"
           style={{ color: "hsl(var(--folder-marine))" }}
         >
-          Acredito que a comunicação tem o poder de transformar o mundo e conectar as pessoas.
+          Acredito que a comunicação tem o poder de transformar o mundo.
         </p>
         
         {/* Closing quote mark */}
         <span 
-          className="font-display text-4xl leading-none opacity-30 ml-1"
+          className="font-display text-3xl leading-none opacity-30 ml-1"
           style={{ color: "hsl(var(--folder-chili))" }}
         >
           "
@@ -103,17 +102,17 @@ export default function MagazineLeftPage() {
       </motion.blockquote>
 
       {/* Small decorative elements */}
-      <div className="mt-6 flex items-center gap-2 opacity-40">
+      <div className="mt-3 flex items-center gap-2 opacity-40">
         <div 
-          className="w-2 h-2 rounded-full"
+          className="w-1.5 h-1.5 rounded-full"
           style={{ backgroundColor: "hsl(var(--folder-melon))" }}
         />
         <div 
-          className="w-2 h-2 rounded-full"
+          className="w-1.5 h-1.5 rounded-full"
           style={{ backgroundColor: "hsl(var(--folder-piscine))" }}
         />
         <div 
-          className="w-2 h-2 rounded-full"
+          className="w-1.5 h-1.5 rounded-full"
           style={{ backgroundColor: "hsl(var(--folder-chili))" }}
         />
       </div>
