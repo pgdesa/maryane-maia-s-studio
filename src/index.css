@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Tangerine:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -50,10 +48,26 @@
     --folder-chili: 10 65% 45%;
     --folder-melon: 20 70% 75%;
 
+    /* Brand and Ink tokens */
+    --brand: 12 55% 45%;
+    --ink: 25 30% 20%;
+    --ink-soft: 25 25% 22%;
+
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(25 30% 15% / 0.15);
-    --shadow-folder: 0 15px 50px -10px hsl(25 30% 15% / 0.25);
     --shadow-polaroid: 0 8px 30px -5px hsl(25 30% 15% / 0.3);
+    
+    /* Folder shadows (padronizadas) */
+    --shadow-folder: 0 28px 65px -18px hsl(25 30% 15% / 0.40),
+                     0 12px 24px -8px hsl(25 30% 15% / 0.20),
+                     inset 0 1px 0 hsl(0 0% 100% / 0.22);
+    --shadow-folder-hover: 0 34px 80px -20px hsl(25 30% 15% / 0.45),
+                           0 16px 28px -10px hsl(25 30% 15% / 0.22),
+                           inset 0 1px 0 hsl(0 0% 100% / 0.26);
+
+    /* Overlay único papel + noise */
+    --noise-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+    --overlay-paper-noise-opacity: 0.09;
 
     /* Navbar */
     --navbar-bg: 25 30% 92% / 0.85;
@@ -122,6 +136,12 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
@@ -267,5 +287,61 @@
 
   .text-folder-dark {
     color: hsl(25 30% 15%);
+  }
+
+  /* Brand and Ink text utilities */
+  .text-brand {
+    color: hsl(var(--brand));
+  }
+
+  .text-ink {
+    color: hsl(var(--ink));
+  }
+
+  .text-ink-soft {
+    color: hsl(var(--ink-soft));
+  }
+
+  /* Background "mesa madeira clara" + luz natural manhã */
+  .desk-wood-bg {
+    background-color: hsl(28 32% 91%);
+    background-image:
+      radial-gradient(ellipse at 18% 10%, hsl(45 70% 98% / 0.70) 0%, transparent 58%),
+      radial-gradient(ellipse at 82% 78%, hsl(25 30% 15% / 0.08) 0%, transparent 55%),
+      linear-gradient(135deg, hsl(35 35% 86%) 0%, hsl(32 30% 83%) 45%, hsl(30 28% 80%) 100%),
+      repeating-linear-gradient(90deg, hsl(30 18% 45% / 0.05) 0 2px, transparent 2px 10px),
+      repeating-linear-gradient(0deg, hsl(30 18% 45% / 0.03) 0 1px, transparent 1px 7px);
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* background-attachment fixed SOMENTE em desktop */
+  .bg-fixed-desktop {
+    background-attachment: fixed;
+  }
+
+  @media (max-width: 768px) {
+    .bg-fixed-desktop {
+      background-attachment: scroll;
+    }
+  }
+
+  /* overlay ÚNICO (papel + noise) — 1 camada */
+  .paper-noise-overlay {
+    background-image: url("/paper-texture-sable.jpg"), var(--noise-svg-url);
+    background-size: cover, 220px 220px;
+    background-repeat: no-repeat, repeat;
+    mix-blend-mode: multiply;
+    opacity: var(--overlay-paper-noise-opacity);
+  }
+
+  /* Sombras padrão de pasta (HeroFolder + FolderCard) */
+  .folder-surface {
+    box-shadow: var(--shadow-folder);
+    transition: box-shadow 280ms ease, transform 280ms ease;
+  }
+
+  .folder-surface:hover {
+    box-shadow: var(--shadow-folder-hover);
   }
 }

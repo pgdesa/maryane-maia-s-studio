@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, forwardRef } from "react";
 import folderTexture from "@/assets/folder-texture-base.jpg";
 import paperTexture from "@/assets/paper-texture-sable.jpg";
 
@@ -64,7 +64,7 @@ const colorStyles = {
   },
 };
 
-export default function FolderCard({ children, color, index, id, title }: FolderCardProps) {
+const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(function FolderCard({ children, color, index, id, title }, forwardedRef) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -121,7 +121,7 @@ export default function FolderCard({ children, color, index, id, title }: Folder
 
         {/* Folder tab - realistic with contour, shadow and label area */}
         <div
-          className="absolute -top-5 md:-top-6 left-6 md:left-10 h-5 md:h-6 px-6 md:px-10 rounded-t-md z-10"
+          className="absolute -top-3 md:-top-4 left-6 md:left-10 h-5 md:h-6 px-6 md:px-10 rounded-t-md z-10"
           style={{
             backgroundColor: styles.tab,
             backgroundImage: `
@@ -150,9 +150,9 @@ export default function FolderCard({ children, color, index, id, title }: Folder
           {/* Tab label text */}
           {title && (
             <span
-              className="relative z-10 flex items-center justify-center h-full font-elegant text-[10px] md:text-xs font-medium tracking-wide uppercase whitespace-nowrap"
+              className="relative z-10 flex items-center justify-center h-full font-elegant text-[10px] md:text-xs font-semibold tracking-wide uppercase whitespace-nowrap"
               style={{ 
-                color: styles.textLight ? "hsl(0 0% 100% / 0.85)" : "hsl(25 30% 20% / 0.8)",
+                color: styles.textLight ? "hsl(0 0% 100% / 0.85)" : "hsl(var(--ink-soft) / 0.8)",
                 textShadow: styles.textLight 
                   ? "0 1px 2px hsl(25 30% 10% / 0.3)" 
                   : "0 1px 0 hsl(0 0% 100% / 0.3)",
@@ -165,19 +165,12 @@ export default function FolderCard({ children, color, index, id, title }: Folder
 
         {/* Main folder body with 3D depth */}
         <div
-          className="relative rounded-sm overflow-hidden"
+          className="relative rounded-sm overflow-hidden folder-surface"
           style={{
             backgroundColor: styles.bg,
             backgroundImage: `url(${folderTexture})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            boxShadow: `
-              0 25px 60px -15px hsl(25 30% 15% / 0.38),
-              0 12px 28px -10px hsl(25 30% 15% / 0.22),
-              0 5px 12px -5px hsl(25 30% 15% / 0.15),
-              0 2px 4px -2px hsl(25 30% 15% / 0.1),
-              inset 0 1px 0 hsl(0 0% 100% / 0.12)
-            `,
             border: `1px solid ${styles.border}`,
           }}
         >
@@ -190,6 +183,14 @@ export default function FolderCard({ children, color, index, id, title }: Folder
             }}
           />
 
+          {/* Morning light highlight */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at 15% 8%, hsl(45 70% 97% / 0.20) 0%, transparent 45%)",
+            }}
+          />
+
           {/* Paper texture for ultra-realism */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -197,15 +198,6 @@ export default function FolderCard({ children, color, index, id, title }: Folder
               backgroundImage: `url(${paperTexture})`,
               backgroundSize: "cover",
               opacity: color === "sable" ? 0.18 : 0.1,
-              mixBlendMode: "multiply",
-            }}
-          />
-
-          {/* Subtle grain noise for paper feel */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.04]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
               mixBlendMode: "multiply",
             }}
           />
@@ -264,6 +256,15 @@ export default function FolderCard({ children, color, index, id, title }: Folder
             }}
           />
           
+          {/* Contact shadow under folder */}
+          <div
+            className="absolute -bottom-3 left-4 right-4 h-3 -z-10 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at center, hsl(25 30% 15% / 0.12) 0%, transparent 70%)",
+              filter: "blur(4px)",
+            }}
+          />
+          
           {/* Bottom shadow line for "sitting on surface" effect */}
           <div
             className="absolute bottom-0 left-2 right-2 h-[1px] pointer-events-none"
@@ -276,4 +277,6 @@ export default function FolderCard({ children, color, index, id, title }: Folder
       </motion.div>
     </section>
   );
-}
+});
+
+export default FolderCard;

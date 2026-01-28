@@ -7,7 +7,7 @@ export default function MagazineSpread() {
     <motion.div
       whileHover={{ y: -4, scale: 1.005 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="relative"
+      className="relative h-full max-h-[calc(100svh-160px)]"
       style={{
         perspective: "2000px",
         transformStyle: "preserve-3d",
@@ -15,7 +15,7 @@ export default function MagazineSpread() {
     >
       {/* Magazine container with realistic shadows */}
       <div
-        className="relative mx-auto"
+        className="relative mx-auto h-full"
         style={{
           transform: "rotateX(2deg) rotateY(-1deg)",
           transformStyle: "preserve-3d",
@@ -39,7 +39,7 @@ export default function MagazineSpread() {
 
         {/* Magazine spread */}
         <div 
-          className="relative rounded-sm overflow-hidden"
+          className="relative rounded-sm overflow-hidden h-full"
           style={{
             boxShadow: `
               0 25px 50px -12px hsl(25 30% 15% / 0.25),
@@ -48,17 +48,19 @@ export default function MagazineSpread() {
             `,
           }}
         >
-          {/* Paper texture base */}
-          <div 
-            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          {/* Couchê paper shine overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none z-20"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E")`,
-              mixBlendMode: "multiply",
+              background: `
+                linear-gradient(125deg, transparent 30%, hsl(0 0% 100% / 0.08) 50%, transparent 70%),
+                radial-gradient(ellipse at 20% 15%, hsl(0 0% 100% / 0.12) 0%, transparent 40%)
+              `,
             }}
           />
 
           {/* Two-page spread layout */}
-          <div className="flex flex-col lg:flex-row relative">
+          <div className="flex flex-col lg:flex-row relative h-full">
             {/* Left Page */}
             <div 
               className="flex-1 relative"
@@ -121,10 +123,10 @@ export default function MagazineSpread() {
           </div>
 
           {/* Page numbers */}
-          <div className="absolute bottom-3 left-6 text-xs font-body opacity-40" style={{ color: "hsl(25 30% 25%)" }}>
+          <div className="absolute bottom-2 left-4 text-[10px] font-body opacity-40 text-ink">
             14
           </div>
-          <div className="absolute bottom-3 right-6 text-xs font-body opacity-40" style={{ color: "hsl(25 30% 25%)" }}>
+          <div className="absolute bottom-2 right-4 text-[10px] font-body opacity-40 text-ink">
             15
           </div>
 
