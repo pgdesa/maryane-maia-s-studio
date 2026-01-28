@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import paperTexture from "@/assets/paper-texture-sable.jpg";
 
 const navLinks = [
-  { label: "Quem sou eu", href: "#quem-sou-eu" },
+  { label: "Quem sou eu", href: "/quem-sou-eu" },
   { label: "Meus Trabalhos", href: "#trabalhos" },
   { label: "Artigos", href: "#artigos" },
   { label: "Fale Comigo", href: "#contato" },
@@ -12,9 +13,30 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith("#")) {
+      // Hash link - scroll to section on home page
+      if (location.pathname !== "/") {
+        navigate("/" + href);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+    // Route links handled by Link component
   };
 
   return (
@@ -55,20 +77,39 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <a 
-                key={link.href} 
-                href={link.href} 
-                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
-                style={{ color: "hsl(25 25% 22%)" }}
-              >
-                {link.label}
-                <span 
-                  className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                  style={{ backgroundColor: "hsl(25 30% 30%)" }}
-              />
-            </a>
-          ))}
+            {navLinks.map((link) => 
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
+                  style={{ color: "hsl(25 25% 22%)" }}
+                >
+                  {link.label}
+                  <span 
+                    className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                    style={{ backgroundColor: "hsl(25 30% 30%)" }}
+                  />
+                </Link>
+              ) : (
+                <a 
+                  key={link.href} 
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                  }}
+                  className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
+                  style={{ color: "hsl(25 25% 22%)" }}
+                >
+                  {link.label}
+                  <span 
+                    className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                    style={{ backgroundColor: "hsl(25 30% 30%)" }}
+                  />
+                </a>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -93,20 +134,42 @@ export default function Navbar() {
               className="md:hidden overflow-hidden"
             >
               <div className="py-3 flex flex-col gap-3">
-                {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                    onClick={() => setIsOpen(false)}
-                    className="font-elegant text-lg font-medium py-1.5"
-                    style={{ color: "hsl(25 25% 22%)" }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
+                {navLinks.map((link, index) =>
+                  link.href.startsWith("/") ? (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08 }}
+                    >
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="font-elegant text-lg font-medium py-1.5 block"
+                        style={{ color: "hsl(25 25% 22%)" }}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08 }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLinkClick(link.href);
+                        setIsOpen(false);
+                      }}
+                      className="font-elegant text-lg font-medium py-1.5"
+                      style={{ color: "hsl(25 25% 22%)" }}
+                    >
+                      {link.label}
+                    </motion.a>
+                  )
+                )}
               </div>
             </motion.div>
           )}
