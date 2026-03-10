@@ -67,7 +67,7 @@ export default function Navbar() {
                 {link.label}
                 <span 
                   className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                  style={{ backgroundColor: "hsl(var(--ink))" }}
+                  style={{ backgroundColor: "hsl(35 40% 85%)" }}
                 />
               </Link>
             ))}
