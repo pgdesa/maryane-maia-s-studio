@@ -76,7 +76,8 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md transition-colors text-ink-soft"
+            className="md:hidden p-2 rounded-md transition-colors"
+            style={{ color: "hsl(35 30% 88%)" }}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
