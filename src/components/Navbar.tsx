@@ -104,7 +104,8 @@ export default function Navbar() {
                   >
                     <Link
                       to={link.href}
-                      className="font-elegant text-lg font-medium py-1.5 block text-ink-soft"
+                      className="font-elegant text-lg font-medium py-1.5 block"
+                      style={{ color: "hsl(35 30% 88%)" }}
                     >
                       {link.label}
                     </Link>
