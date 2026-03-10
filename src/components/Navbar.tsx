@@ -45,9 +45,11 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={scrollToTop}
-            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer text-brand"
+            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer"
             style={{ 
-              textShadow: "1px 1px 2px hsl(25 30% 15% / 0.15)"
+              color: "hsl(35 40% 90%)",
+              textShadow: "1px 1px 3px hsl(25 30% 10% / 0.4)"
+            }}
             }}
           >
             Maryane Maia
