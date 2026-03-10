@@ -74,14 +74,17 @@ export default function HeroFolder() {
         transition={{ delay: 1.1, duration: 0.5 }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
       >
-        <span className="font-elegant text-sm tracking-wide text-ink-soft opacity-70">
+        <span 
+          className="font-elegant text-sm tracking-wide opacity-80"
+          style={{ color: "hsl(35 30% 85%)" }}
+        >
           Role para explorar os arquivos
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
         >
-          <ChevronDown className="w-5 h-5 text-ink-soft opacity-60" />
+          <ChevronDown className="w-5 h-5 opacity-70" style={{ color: "hsl(35 30% 85%)" }} />
         </motion.div>
       </motion.div>
     </section>
