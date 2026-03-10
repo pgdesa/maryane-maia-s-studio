@@ -50,7 +50,6 @@ export default function Navbar() {
               color: "hsl(35 40% 90%)",
               textShadow: "1px 1px 3px hsl(25 30% 10% / 0.4)"
             }}
-            }}
           >
             Maryane Maia
           </button>
