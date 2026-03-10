@@ -35,9 +35,9 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50"
       style={{ 
-        backgroundColor: "hsl(28 32% 91% / 0.92)",
-        backdropFilter: "blur(8px)",
-        borderBottom: "1px solid hsl(30 25% 82% / 0.5)"
+        backgroundColor: "hsl(28 32% 40% / 0.75)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid hsl(30 25% 50% / 0.3)"
       }}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4 relative z-10">
@@ -45,9 +45,10 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={scrollToTop}
-            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer text-brand"
+            className="font-display text-2xl md:text-3xl font-bold tracking-wide hover:opacity-85 transition-opacity cursor-pointer"
             style={{ 
-              textShadow: "1px 1px 2px hsl(25 30% 15% / 0.15)"
+              color: "hsl(35 40% 90%)",
+              textShadow: "1px 1px 3px hsl(25 30% 10% / 0.4)"
             }}
           >
             Maryane Maia
@@ -59,12 +60,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group text-ink-soft"
+                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
+                style={{ color: "hsl(35 30% 88%)" }}
               >
                 {link.label}
                 <span 
                   className="absolute bottom-0 left-0 w-full h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                  style={{ backgroundColor: "hsl(var(--ink))" }}
+                  style={{ backgroundColor: "hsl(35 40% 85%)" }}
                 />
               </Link>
             ))}
@@ -73,7 +75,8 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md transition-colors text-ink-soft"
+            className="md:hidden p-2 rounded-md transition-colors"
+            style={{ color: "hsl(35 30% 88%)" }}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -100,7 +103,8 @@ export default function Navbar() {
                   >
                     <Link
                       to={link.href}
-                      className="font-elegant text-lg font-medium py-1.5 block text-ink-soft"
+                      className="font-elegant text-lg font-medium py-1.5 block"
+                      style={{ color: "hsl(35 30% 88%)" }}
                     >
                       {link.label}
                     </Link>
