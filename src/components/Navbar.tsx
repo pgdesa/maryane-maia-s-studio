@@ -61,7 +61,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group text-ink-soft"
+                className="font-elegant text-base lg:text-lg font-medium transition-all duration-300 relative group"
+                style={{ color: "hsl(35 30% 88%)" }}
               >
                 {link.label}
                 <span 
