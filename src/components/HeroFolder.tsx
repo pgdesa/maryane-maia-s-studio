@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
-import PolaroidPhoto from "./PolaroidPhoto";
-import folderManila from "@/assets/folder-manila.png";
+import folderHero from "@/assets/folder-hero.png";
 
 export default function HeroFolder() {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,7 +25,6 @@ export default function HeroFolder() {
         style={{ y, opacity, scale, rotateX }}
         className="w-full max-w-[900px] relative mx-auto"
       >
-        {/* Main folder — real manila folder image */}
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -36,15 +34,17 @@ export default function HeroFolder() {
             filter: "drop-shadow(0 20px 50px hsl(25 30% 15% / 0.35)) drop-shadow(0 8px 16px hsl(25 30% 15% / 0.2))",
           }}
         >
-          {/* Folder image */}
+          {/* Folder image with polaroid and clip already composited */}
           <img
-            src={folderManila}
-            alt="Pasta de portfólio"
+            src={folderHero}
+            alt="Pasta de portfólio Maryane Maia"
             className="w-full h-auto"
+            loading="eager"
+            decoding="async"
           />
 
-          {/* Title overlay — centered on folder */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+          {/* Title overlay — centered on folder body */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ paddingTop: "12%" }}>
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -59,11 +59,6 @@ export default function HeroFolder() {
               <span className="block mt-1 md:mt-2">Maryane Maia</span>
             </motion.h1>
           </div>
-
-          {/* Polaroid photo — overlapping top-right edge of folder */}
-          <div className="absolute -top-6 right-4 md:-top-6 md:right-10 lg:-top-8 lg:right-16 z-20">
-            <PolaroidPhoto />
-          </div>
         </motion.div>
       </motion.div>
 
@@ -74,7 +69,7 @@ export default function HeroFolder() {
         transition={{ delay: 1.1, duration: 0.5 }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
       >
-        <span 
+        <span
           className="font-elegant text-sm tracking-wide opacity-80"
           style={{ color: "hsl(35 30% 85%)" }}
         >
