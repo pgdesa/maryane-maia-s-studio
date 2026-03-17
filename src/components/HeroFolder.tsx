@@ -18,12 +18,12 @@ export default function HeroFolder() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center pt-28 md:pt-32 pb-12 px-4 relative"
+      className="h-screen flex items-center justify-center px-4 py-4 relative overflow-hidden"
       style={{ perspective: "1600px" }}
     >
       <motion.div
         style={{ y, opacity, scale, rotateX }}
-        className="w-full max-w-[900px] relative mx-auto"
+        className="w-full max-w-[min(900px,85vh)] relative mx-auto"
       >
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
