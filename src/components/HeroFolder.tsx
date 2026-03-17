@@ -18,7 +18,7 @@ export default function HeroFolder() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-x-hidden px-4 pb-16 pt-24 md:pb-20 md:pt-28"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-x-hidden px-4 pb-12 pt-20 md:pb-16 md:pt-24"
       style={{ perspective: "1600px" }}
     >
       <motion.div
@@ -37,14 +37,14 @@ export default function HeroFolder() {
           <img
             src={folderHero}
             alt="Pasta de portfólio Maryane Maia"
-            className="block h-auto w-auto max-h-[62svh] max-w-full sm:max-h-[66svh] md:max-h-[70svh] xl:max-h-[74svh]"
+            className="block h-auto max-h-[calc(100svh-9rem)] w-auto max-w-[94vw] md:max-h-[calc(100svh-10rem)] xl:max-h-[calc(100svh-9.5rem)]"
             loading="eager"
             decoding="async"
           />
 
           <div
-            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-[12%]"
-            style={{ paddingTop: "12%" }}
+            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-[10%]"
+            style={{ paddingTop: "16%" }}
           >
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
@@ -63,7 +63,7 @@ export default function HeroFolder() {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.1, duration: 0.5 }}
-        className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 md:bottom-8"
+        className="absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 md:bottom-6"
       >
         <span className="font-elegant text-sm tracking-wide text-primary-foreground/80">
           Role para explorar os arquivos
