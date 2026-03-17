@@ -60,8 +60,8 @@ export default function HeroFolder() {
             </motion.h1>
           </div>
 
-          {/* Polaroid photo — overlapping top edge of folder */}
-          <div className="absolute -top-12 right-6 md:-top-16 md:right-12 lg:-top-20 lg:right-16 z-20">
+          {/* Polaroid photo — half overlapping the top edge */}
+          <div className="absolute -top-10 right-4 md:-top-12 md:right-10 lg:-top-14 lg:right-16 z-20">
             <PolaroidPhoto />
           </div>
         </motion.div>
