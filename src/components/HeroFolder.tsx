@@ -37,7 +37,7 @@ export default function HeroFolder() {
           <img
             src={folderHero}
             alt="Pasta de portfólio Maryane Maia"
-            className="block h-auto max-h-[calc(100svh-9rem)] w-auto max-w-[94vw] md:max-h-[calc(100svh-10rem)] xl:max-h-[calc(100svh-9.5rem)]"
+            className="block h-auto max-h-[calc(100svh-5rem)] w-auto max-w-[96vw] md:max-h-[calc(100svh-5.5rem)] xl:max-h-[calc(100svh-5rem)]"
             loading="eager"
             decoding="async"
           />
