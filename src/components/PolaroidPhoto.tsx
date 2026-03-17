@@ -14,10 +14,10 @@ export default function PolaroidPhoto({ className = "" }: PolaroidPhotoProps) {
       transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
       className={`relative ${className}`}
     >
-      {/* Rose gold paper clip — clipping polaroid to folder */}
+      {/* Rose gold paper clip — positioned at bottom of polaroid to clip it to folder */}
       <motion.div
-        className="absolute -top-6 left-1/2 -translate-x-1/2 w-10 h-16 md:w-14 md:h-20 z-30"
-        style={{ transform: "rotate(8deg)" }}
+        className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-16 h-28 md:w-22 md:h-36 lg:w-28 lg:h-40 z-30"
+        style={{ transform: "rotate(12deg)" }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.65, duration: 0.5, ease: "easeOut" }}
