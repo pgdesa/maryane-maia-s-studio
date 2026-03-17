@@ -10,22 +10,6 @@ interface FolderCardProps {
   title?: string;
 }
 
-const colorOverlays: Record<string, string> = {
-  sable: "hsl(35 42% 78% / 0.15)",
-  marine: "hsl(210 50% 35% / 0.55)",
-  piscine: "hsl(178 45% 42% / 0.50)",
-  chili: "hsl(12 55% 42% / 0.50)",
-  melon: "hsl(22 65% 72% / 0.35)",
-};
-
-const textColors: Record<string, string> = {
-  sable: "hsl(25 28% 16%)",
-  marine: "hsl(210 25% 96%)",
-  piscine: "hsl(178 18% 98%)",
-  chili: "hsl(12 18% 98%)",
-  melon: "hsl(22 35% 18%)",
-};
-
 const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(function FolderCard({ children, color, index, id, title }, forwardedRef) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -53,35 +37,27 @@ const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(function FolderCa
           opacity,
           transformStyle: "preserve-3d",
         }}
-        className="w-full max-w-[900px] relative mx-auto"
+        className="w-full max-w-[900px] relative mx-auto flex items-center justify-center"
       >
-        {/* Real manila folder with color overlay */}
         <div
-          className="relative"
+          className="relative w-full"
           style={{
             filter: "drop-shadow(0 18px 40px hsl(25 30% 15% / 0.30)) drop-shadow(0 6px 12px hsl(25 30% 15% / 0.18))",
           }}
         >
-          {/* Folder image */}
+          {/* Folder image — no color overlay */}
           <img
             src={folderManila}
             alt={title || "Pasta de arquivo"}
-            className="w-full h-auto"
+            className="w-full h-auto mx-auto block"
+            loading="lazy"
+            decoding="async"
           />
 
-          {/* Color overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none rounded-sm"
-            style={{
-              backgroundColor: colorOverlays[color],
-              mixBlendMode: "multiply",
-            }}
-          />
-
-          {/* Content overlay */}
+          {/* Content overlay — centered on folder */}
           <div
             className="absolute inset-0 flex items-center justify-center p-6 md:p-10 lg:p-12"
-            style={{ color: textColors[color] }}
+            style={{ color: "hsl(25 28% 16%)" }}
           >
             {children}
           </div>

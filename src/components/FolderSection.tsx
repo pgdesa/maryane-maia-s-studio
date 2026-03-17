@@ -115,12 +115,8 @@ export default function FolderSections() {
               whileTap={{ scale: 0.98 }}
               className="px-8 py-3 rounded-sm font-elegant text-lg font-semibold transition-all duration-300 relative overflow-hidden"
               style={{
-                backgroundColor: folder.color === "sable" || folder.color === "melon"
-                  ? "hsl(25 32% 18%)"
-                  : "hsl(0 0% 98%)",
-                color: folder.color === "sable" || folder.color === "melon"
-                  ? "hsl(35 28% 94%)"
-                  : "hsl(25 28% 16%)",
+                backgroundColor: "hsl(25 32% 18%)",
+                color: "hsl(35 28% 94%)",
                 boxShadow: `
                   0 6px 20px -4px hsl(25 30% 15% / 0.3),
                   0 2px 6px -2px hsl(25 30% 15% / 0.15),
